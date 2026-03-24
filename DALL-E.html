@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/png" href="fav.avif">
+    <title>DALL·E</title>
+
+    <link rel="stylesheet" href="style.css?v=5">
+
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 16px;
+            background: #f7f9fc;
+            color: #000;
+        }
+
+        body.dark {
+            background: #1e1e1e !important;
+            color: #fff !important;
+        }
+
+        body.dark,
+        body.dark p,
+        body.dark b,
+        body.dark i,
+        body.dark h1,
+        body.dark h2,
+        body.dark h3,
+        body.dark h4,
+        body.dark li,
+        body.dark label,
+        body.dark div,
+        body.dark span,
+        body.dark td,
+        body.dark th,
+        body.dark ul,
+        body.dark ol,
+        body.dark form,
+        body.dark nav {
+            color: #fff !important;
+        }
+
+        body.dark a {
+            color: #fff !important;
+        }
+
+        body.dark table,
+        body.dark tr,
+        body.dark td {
+            background-color: #2b2b2b !important;
+        }
+
+        body.dark table[bgcolor],
+        body.dark td[bgcolor],
+        body.dark tr[bgcolor] {
+            background-color: #2b2b2b !important;
+        }
+
+        body.dark textarea,
+        body.dark select,
+        body.dark input,
+        body.dark option {
+            background: #333 !important;
+            color: #fff !important;
+            border: 1px solid #666 !important;
+        }
+
+        body.dark button {
+            color: #fff !important;
+            border: 1px solid #666 !important;
+            background: #444 !important;
+        }
+
+        body.dark .fact-card,
+        body.dark #popupContent,
+        body.dark .hack-text-wrapper {
+            background: #333 !important;
+            color: #fff !important;
+        }
+
+        body.dark hr {
+            border-color: #666 !important;
+        }
+
+        body.dark .checkmark {
+            background-color: #555 !important;
+            border-color: #aaa !important;
+        }
+
+        .star-rating span {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .star-rating span.active {
+            color: gold;
+            transform: scale(1.3);
+        }
+        body.dark .star-rating span.active {
+    color: gold !important;
+}
+    </style>
+</head>
+
+<body bgcolor="#f7f9fc">
+
+<!-- ===== HEADER ===== -->
+<table width="100%" bgcolor="#d0e6f7" cellpadding="20">
+    <tr>
+        <td>
+            <a href="index.html" style="display:inline-block;">
+                <img src="logo (2).png" width="80" alt="Лого" style="vertical-align:middle;">
+            </a>
+            <font size="5"><b>AI Tools Guide</b></font>
+        </td>
+
+        <td align="right">
+            <h3>
+                <a href="index.html" style="text-decoration:none; color:#080a0b;">Головна</a> |
+                <a href="tools.html" style="text-decoration:none; color:#080a0b;">Інструменти</a>
+            </h3>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<button id="themeToggle" type="button">🌙 Темна тема</button>
+
+<!-- ===== MAIN LAYOUT ===== -->
+<table width="90%" align="center" cellpadding="20">
+<tr valign="top">
+
+    <!-- ===== ЛІВА БОКОВА ПАНЕЛЬ ===== -->
+    <td width="20%" bgcolor="#e3f0fa" style="text-align:center;">
+
+        <h2>Лайфхаки роботи з DALL·E</h2>
+
+        <div class="hack-carousel">
+            <div class="hack-text-wrapper">
+                <p id="hackText"></p>
+            </div>
+
+            <div class="hack-controls">
+                <button type="button" onclick="prevHack()">◀ Назад</button>
+                <button type="button" onclick="nextHack()">Далі ▶</button>
+            </div>
+            <br>
+            <div id="hackCounter"></div>
+        </div>
+
+        <hr>
+
+        <h2 style="text-align:center;">Квіз: DALL·E</h2>
+
+        <form id="quiz">
+            <div style="width:95%; margin:0 auto;">
+
+                <p style="text-align:center;"><b>1. Що таке DALL·E?</b></p>
+                <div style="text-align:left;">
+                    <input type="radio" name="q1" value="0"> Відеоредактор<br>
+                    <input type="radio" name="q1" value="1"> Генератор зображень за текстом<br>
+                    <input type="radio" name="q1" value="0"> Текстовий редактор<br>
+                </div>
+
+                <hr>
+
+                <p style="text-align:center;"><b>2. Хто розробив DALL·E?</b></p>
+                <div style="text-align:left;">
+                    <input type="radio" name="q2" value="1"> OpenAI<br>
+                    <input type="radio" name="q2" value="0"> Google<br>
+                    <input type="radio" name="q2" value="0"> Meta<br>
+                </div>
+
+                <hr>
+
+                <p style="text-align:center;"><b>3. Що таке prompt?</b></p>
+                <div style="text-align:left;">
+                    <input type="radio" name="q3" value="0"> Тип файлу<br>
+                    <input type="radio" name="q3" value="0"> Алгоритм<br>
+                    <input type="radio" name="q3" value="1"> Текстовий опис для генерації<br>
+                </div>
+
+                <hr>
+
+                <p style="text-align:center;"><b>4. Результат нечіткого prompt?</b></p>
+                <div style="text-align:left;">
+                    <input type="radio" name="q4" value="0"> Помилка системи<br>
+                    <input type="radio" name="q4" value="0"> Ідеальний результат<br>
+                    <input type="radio" name="q4" value="1"> Менш точне зображення<br>
+                </div>
+
+                <hr>
+
+                <p style="text-align:center;"><b>5. Що найбільше впливає на стиль?</b></p>
+                <div style="text-align:left;">
+                    <input type="radio" name="q5" value="1"> Опис стилю<br>
+                    <input type="radio" name="q5" value="0"> Час доби<br>
+                    <input type="radio" name="q5" value="0"> Довжина тексту<br>
+                </div>
+
+                <hr>
+
+                <p style="text-align:center;"><b>6. Що додати для реалізму?</b></p>
+                <div style="text-align:left;">
+                    <input type="radio" name="q6" value="0"> Emoji<br>
+                    <input type="radio" name="q6" value="1"> Освітлення і матеріали<br>
+                    <input type="radio" name="q6" value="0"> HTML-теги<br>
+                </div>
+
+                <br>
+
+                <div style="text-align:center;">
+                    <button type="button" onclick="checkQuiz()">Завершити квіз</button>
+                </div>
+
+            </div>
+        </form>
+
+        <p id="quizResult" style="font-weight:bold; margin-top:10px; text-align:center;"></p>
+    </td>
+
+    <!-- ===== ЦЕНТРАЛЬНИЙ КОНТЕНТ ===== -->
+    <td width="55%" bgcolor="#ffffff">
+
+        <h1 style="text-align:center;">Графічний редактор DALL·E</h1>
+                        
+        <a href="https://ru.wikipedia.org/wiki/DALL-E">DALL·E</a> — це не просто графічний редактор, а інструмент, який змінює сам підхід до створення візуального контенту.  
+        Замість пензлів, шарів і фільтрів тут використовується текст — достатньо описати ідею словами, і штучний інтелект перетворює її на зображення.
+        <br><br>
+
+        Одна з найцікавіших особливостей DALL·E полягає в тому, що він розуміє контекст, а не просто окремі слова.
+        <br>
+        Наприклад, запит «в’язаний светр з преміальної пряжі в мінімалістичному стилі, студійне світло» дасть зовсім інший результат, ніж той самий опис без уточнення стилю та освітлення.
+
+        Це робить роботу з інструментом схожою на співпрацю з дизайнером, а не на роботу з класичним редактором.
+        <br><br>
+
+        Ще одна сильна сторона DALL·E — експерименти.
+        <br>
+        Користувач може швидко перевіряти різні ідеї, змінювати стилі, кольори або композицію без додаткових витрат часу.
+        <br><br>
+
+        Те, на що раніше йшли години роботи дизайнера, тепер можна зробити за кілька хвилин.
+        <br>
+        Водночас DALL·E має свої обмеження. Якість результату напряму залежить від того, наскільки чітко сформульований prompt.
+
+        Неточний або занадто загальний опис може призвести до несподіваного результату.
+        <br><br>
+
+        Саме тому робота з DALL·E вчить мислити структуровано і уважно формулювати вимоги — навичка, яка дуже цінна і в тестуванні програмного забезпечення.
+        <br>
+        Сьогодні DALL·E активно використовують дизайнери, маркетологи, контент-кріейтори та стартапи.
+        Але навіть для початківців цей інструмент є чудовим прикладом того, як штучний інтелект може стати помічником у творчій роботі, а не її заміною.
+
+        <hr>
+
+        <h2 style="text-align:center;">Галерея DALL·E</h2>
+
+        <div class="carousel-container">
+            <div class="carousel-image-wrapper">
+                <img id="carouselImage" src="1.jpg">
+            </div>
+
+            <div class="carousel-controls">
+                <button type="button" onclick="prevImage()">← Назад</button>
+                <button type="button" onclick="nextImage()">Далі →</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2 style="text-align:center;">Принцип роботи</h2>
+
+        Користувач вводить текстовий запит (prompt), наприклад: «в’язаний светр з
+        преміальної пряжі в мінімалістичному стилі». На основі цього опису DALL·E
+        аналізує слова, стиль, об’єкти та створює відповідне зображення.
+
+        <br><br>
+
+        Штучний інтелект навчається на великій кількості зображень і текстових описів,
+        що дозволяє йому розуміти композицію, кольори, матеріали та художні стилі.
+        <br><br>
+
+        <a href="https://www.youtube.com/watch?v=rDO4kP2wUCc" class="video-link">
+            Оглядове відео про роботу DALL·E
+        </a>
+        <br><br>
+
+        <a href="javascript:void(0);" id="openPopup">
+            <img src="dalle.jpg" width="150" alt="DALL·E icon">
+        </a>
+        <p><i>Натисни на іконку, щоб отримати інструкцію</i></p>
+
+        <div id="popup">
+            <div id="popupContent">
+                <h3>Як користуватися DALL·E</h3>
+                <ul style="text-align:left;">
+                    <li>1️⃣ Введи текстовий опис того, що хочеш намалювати.</li>
+                    <li>2️⃣ Обери стиль зображення.</li>
+                    <li>3️⃣ Натисни «Generate» і чекай результат.</li>
+                    <li>4️⃣ За потреби збережи або відредагуй зображення.</li>
+                </ul>
+                <button id="closePopup" type="button">Закрити</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <table width="100%" bgcolor="#ffffff" cellpadding="20">
+            <tr>
+                <td width="50%" valign="top">
+                    <h3>✅ Переваги</h3>
+                    <ul>
+                        <li>Швидке створення зображень</li>
+                        <li>Не потребує навичок дизайну</li>
+                        <li>Генерація за текстовим описом</li>
+                        <li>Можливість експериментувати зі стилями</li>
+                        <li>Підходить для прототипування ідей</li>
+                    </ul>
+                </td>
+
+                <td width="50%" valign="top">
+                    <h3>❌ Недоліки</h3>
+                    <ul>
+                        <li>Якість залежить від prompt</li>
+                        <li>Можливі помилки в деталях</li>
+                        <li>Обмеження без платного доступу</li>
+                        <li>Не завжди передбачуваний результат</li>
+                        <li>Потрібен інтернет</li>
+                    </ul>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+
+        <section style="text-align:center; margin:20px 0;">
+            <a href="https://www.dall-efree.com/" target="_blank" class="img-button">
+                Клікни, щоб спробувати
+            </a>
+
+            <div class="star-rating">
+                <span data-value="1">&#9733;</span>
+                <span data-value="2">&#9733;</span>
+                <span data-value="3">&#9733;</span>
+                <span data-value="4">&#9733;</span>
+                <span data-value="5">&#9733;</span>
+            </div>
+
+            <p>Ваша оцінка: <span id="rating-value">0</span></p>
+        </section>
+    </td>
+
+    <!-- ===== ПРАВА БОКОВА ПАНЕЛЬ ===== -->
+    <td width="30%" bgcolor="#e3f0fa" align="center" style="vertical-align:top; padding:20px;">
+        <div id="clock">00:00:00</div>
+        <br>
+
+        <b>Виберіть AI інструмент:</b>
+        <br><br>
+        <select id="aiSelect">
+            <option value="" selected disabled hidden>-- Оберіть інструмент --</option>
+            <option value="chatgpt.html">ChatGPT</option>
+            <option value="googlegemini.html">Google Gemini</option>
+            <option value="Midjourney.html">Midjourney</option>
+            <option value="DALL-E.html">DALL·E</option>
+            <option value="copilot.html">Microsoft Copilot</option>
+        </select>
+
+        <br><br><br><br><br><br><br><br><br>
+
+        <b>Цікаво знати:</b>
+        <br><br>
+        <div style="width:100%; text-align:left;">
+            <div class="fact-card">🤖 AI здатен писати музику, яку можна слухати та виконувати живими музикантами.</div>
+            <br>
+            <div class="fact-card">🌌 Деякі AI-моделі створюють космічні пейзажі, які виглядають реалістично.</div>
+            <br>
+            <div class="fact-card">🧠 Деякі нейромережі навчилися грати в відеоігри краще за людей.</div>
+        </div>
+
+        <br>
+
+        <b>Опитування:</b>
+        <div id="poll" style="text-align:left; margin-top:5px;">
+            <p>Який AI ти використовуєш найчастіше?</p>
+            
+            <label class="radioContainer">ChatGPT
+                <input type="radio" name="ai" value="ChatGPT">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">Google Gemini
+                <input type="radio" name="ai" value="Google Gemini">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">Midjourney
+                <input type="radio" name="ai" value="Midjourney">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">DALL·E
+                <input type="radio" name="ai" value="DALL·E">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">Microsoft Copilot
+                <input type="radio" name="ai" value="Microsoft Copilot">
+                <span class="checkmark"></span>
+            </label>
+
+            <button type="button" onclick="submitVote()" style="margin-top:10px; padding:5px 10px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer;">Підтвердити</button>
+        </div>
+
+        <br>
+
+        <b>Міні-чат для ідей:</b>
+        <p style="font-size:12px; color:#555;">Введи свій промт, щоб не забути</p>
+        <textarea id="ideaInput" rows="3" style="width:100%; padding:5px;"></textarea>
+        <br>
+        <button type="button" onclick="saveIdea()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Зберегти</button>
+        <button type="button" onclick="clearIdeas()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Очистити всі ідеї</button>
+        <div id="savedIdeas" style="margin-top:10px; font-size:13px; color:#333;"></div>
+    </td>
+</tr>
+</table>
+
+<br>
+
+<table width="100%" bgcolor="#d6ebf9" cellpadding="20">
+    <tr>
+        <td align="center">
+            <i>© 2026 AI Tools Guide. Всі права захищені.</i>
+        </td>
+    </tr>
+</table>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const pad = n => n < 10 ? "0" + n : n;
+    const clock = document.getElementById("clock");
+    if (clock) clock.innerText = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+const images = ["1.jpg","2.jpg","3.jpg","4.jpg"];
+let currentIndex = 0;
+const img = document.getElementById("carouselImage");
+function showImage() { if (img) img.src = images[currentIndex]; }
+function nextImage() { currentIndex = (currentIndex + 1) % images.length; showImage(); }
+function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; showImage(); }
+showImage();
+
+function checkQuiz() {
+    const total = 6;
+    let score = 0;
+    for (let i = 1; i <= total; i++) {
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!answer) {
+            alert("Будь ласка, відповіді на всі питання!");
+            return;
+        }
+        if (answer.value === "1") score++;
+    }
+    const result = document.getElementById("quizResult");
+    if (result) result.innerText = `Ваш результат: ${score} з ${total} правильних відповідей`;
+}
+
+const themeBtn = document.getElementById("themeToggle");
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeBtn.textContent = "☀️ Світла тема";
+}
+themeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("dark");
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        themeBtn.textContent = "☀️ Світла тема";
+    } else {
+        localStorage.setItem("theme", "light");
+        themeBtn.textContent = "🌙 Темна тема";
+    }
+});
+
+const openBtn = document.getElementById("openPopup");
+const popup = document.getElementById("popup");
+const closeBtn = document.getElementById("closePopup");
+if (openBtn && popup && closeBtn) {
+    openBtn.onclick = () => popup.classList.add("show");
+    closeBtn.onclick = () => popup.classList.remove("show");
+    window.addEventListener("click", function (e) {
+        if (e.target === popup) popup.classList.remove("show");
+    });
+}
+
+const hacks = [
+    "🧠 Формулюй prompt максимально конкретно (стиль, колір, фон).",
+    "🎨 Додавай стиль художника або напрям (oil painting, cyberpunk).",
+    "📐 Вказуй пропорції зображення (square, wide, portrait).",
+    "🔄 Генеруй кілька варіантів одного prompt.",
+    "✏️ Починай з простого опису, потім ускладнюй.",
+    "🚫 Уникай суперечливих слів у prompt."
+];
+let currentHack = 0;
+function showHack() {
+    const hackText = document.getElementById("hackText");
+    const hackCounter = document.getElementById("hackCounter");
+    if (hackText) hackText.textContent = hacks[currentHack];
+    if (hackCounter) hackCounter.textContent = `Лайфхак ${currentHack + 1} з ${hacks.length}`;
+}
+function nextHack() { currentHack = (currentHack + 1) % hacks.length; showHack(); }
+function prevHack() { currentHack = (currentHack - 1 + hacks.length) % hacks.length; showHack(); }
+showHack();
+
+const ratingStars = document.querySelectorAll(".star-rating span");
+const ratingValue = document.getElementById("rating-value");
+let selectedRating = 0;
+
+ratingStars.forEach(star => {
+    const val = parseInt(star.dataset.value);
+
+    star.addEventListener("mouseenter", function () {
+        selectedRating = val;
+        ratingValue.innerText = val;
+        highlightStars(val);
+    });
+});
+
+function highlightStars(rating) {
+    ratingStars.forEach(star => {
+        const starValue = parseInt(star.dataset.value);
+        star.classList.remove("active");
+
+        if (starValue <= rating) {
+            star.classList.add("active");
+        }
+    });
+}
+
+function submitVote() {
+    const radios = document.getElementsByName("ai");
+    let selected = null;
+    for (const r of radios) {
+        if (r.checked) {
+            selected = r.value;
+            break;
+        }
+    }
+    if (selected) {
+        alert(`Ви обрали: ${selected}`);
+    } else {
+        alert("Будь ласка, оберіть AI перед підтвердженням!");
+    }
+}
+
+function saveIdea() {
+    const input = document.getElementById("ideaInput");
+    const text = input.value.trim();
+    if (!text) return alert("Введіть текст!");
+
+    let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+    ideas.push(text);
+    localStorage.setItem("ideas", JSON.stringify(ideas));
+    input.value = "";
+    renderIdeas();
+}
+
+function clearIdeas() {
+    localStorage.removeItem("ideas");
+    renderIdeas();
+}
+
+function renderIdeas() {
+    let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+    const container = document.getElementById("savedIdeas");
+    if (!container) return;
+    container.innerHTML = "";
+    ideas.forEach((idea) => {
+        container.innerHTML += `<div>💡 ${idea}</div>`;
+    });
+}
+window.addEventListener("load", renderIdeas);
+</script>
+
+<script>
+const select = document.getElementById("aiSelect");
+
+const page = decodeURIComponent(window.location.pathname.split("/").pop() || "")
+  .split("?")[0]
+  .split("#")[0];
+
+const isHomePage = !page || page === "index.html";
+
+if (!isHomePage) {
+  if ([...select.options].some(o => o.value === page)) {
+    select.value = page;
+  } else {
+    select.selectedIndex = 0;
+  }
+} else {
+  select.selectedIndex = 0;
+}
+
+select.addEventListener("change", function () {
+  if (this.value && this.value !== "#") {
+    window.location.href = this.value;
+  }
+});
+</script>
+
+</body>
+</html>

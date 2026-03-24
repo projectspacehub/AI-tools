@@ -1,0 +1,348 @@
+/* ================== СВІТЛА ТЕМА (default) ================== */
+body {
+    background-color: #f7f9fc;
+    color: #080a0b;
+    font-family: Georgia, "Times New Roman", serif;
+    margin: 0;
+    transition: 0.3s;
+}
+
+a { text-decoration: none; color: #080a0b; }
+
+/* ===== Хедер ===== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+nav { margin-left: auto; }
+.nav-link { text-decoration: none; font-weight: bold; transition: 0.2s; }
+.nav-link:hover { opacity: 0.7; }
+
+/* ===== Theme toggle button ===== */
+#themeToggle {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ===== Галерея / Карусель ===== */
+.carousel-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+.carousel-image-wrapper {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.carousel-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+.carousel-controls button {
+    background: #d0e6f7;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ===== Кнопка-картинка ===== */
+.img-button {
+    display: inline-block;
+    padding: 20px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #d0e6f7, #a8d0e6);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    color: #2c3e50;
+    line-height: normal;
+    white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.img-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.img-button:active { transform: translateY(0); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+/* ===== Годинник ===== */
+#clock {
+    background: #d0e6f7;
+    color: #2c3e50;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    width: 150px;
+    margin: 10px auto;
+}
+
+/* ===== Квіз ===== */
+#quiz button {
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#quiz button:hover {
+    background: #1a2a38;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* ===== Лайфхаки ===== */
+.hack-carousel, .hack-text-wrapper, .hack-controls, #hackCounter { text-align: center; }
+.hack-text-wrapper {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.hack-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.hack-carousel-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
+
+/* ===== Рейтинг зірками ===== */
+.star-rating {
+    display: flex;
+    gap: 5px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    justify-content: center;
+}
+.star-rating span { color: lightgray; transition: color 0.2s, transform 0.2s; }
+.star-rating span.hover, .star-rating span.selected { color: gold; }
+.star-rating span.hover { transform: scale(1.2); }
+
+/* ===== Радіо кнопки ===== */
+.radioContainer {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+.radioContainer input { position: absolute; opacity: 0; cursor: pointer; }
+.checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    transition: 0.2s;
+}
+.radioContainer input:checked ~ .checkmark { background-color: #2c3e50; border-color: #1a2a38; }
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.radioContainer input:checked ~ .checkmark:after {
+    display: block;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+/* ===== Попап ===== */
+#popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+#popup.show { opacity: 1; pointer-events: auto; }
+#popupContent {
+    background: #f7f9fc;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+}
+#popup.show #popupContent { transform: translateY(0); }
+#popupContent button {
+    margin-top: 15px;
+    padding: 5px 10px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#popupContent button:hover { background: #1a2a38; }
+
+/* ================== ТЕМНА ТЕМА ================== */
+body.dark {
+    background: #121212;
+    color: #e0e0e0;
+}
+body.dark a { color: #a78bfa; }
+body.dark .nav-link { color: #f1f1f1; }
+body.dark .nav-link:hover { color: #a8d0e6; }
+body.dark #clock { background: #2c3e50; color: #d0e6f7; }
+body.dark .img-button { background-color: #333; color: #fff; border: 1px solid #555; }
+body.dark #ideaInput { background-color: #333; color: #fff; border: 1px solid #555; }
+body.dark #popupContent { background-color: #2a2a2a; color: #f1f1f1; }
+body.dark #popupContent button { background-color: #444; color: #fff; border: 1px solid #555; }
+body.dark #popupContent button:hover { background-color: #666; }
+body.dark #quiz button { background: #7c3aed; color: #fff; }
+body.dark #quiz button:hover { background: #5b21b6; }
+body.dark .hack-carousel { background-color: #2c3e50; }
+body.dark #hackText, body.dark #hackCounter { color: #fff; }
+body.dark table, body.dark td { background-color: #1f2937; color: #f9fafb; }
+
+/* ================== MOBILE RESPONSIVE ================== */
+@media (max-width: 768px) {
+    body { padding: 8px; display: block; overflow-x: hidden; }
+
+    table, tr, td { display: block; width: 100% !important; padding: 12px !important; box-sizing: border-box; }
+
+    #carouselImage { width: 100% !important; height: 220px !important; object-fit: cover; max-height: none !important; }
+    .carousel-controls { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .carousel-controls button { width: 45%; font-size: 16px; }
+
+    button, .img-button, select { width: 100% !important; font-size: 16px; margin-bottom: 10px; }
+
+   p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+    .hack-carousel, .fact-card { width: 100%; box-sizing: border-box; }
+
+    td[width="20%"], td[width="30%"] { order: 2; }
+    td[width="55%"] { order: 1; }
+
+    .star-rating { justify-content: center; font-size: 28px; }
+}
+
+
+/* Кнопка "Клікни, щоб спробувати" у темній темі */
+body.dark .img-button {
+    background-color: #7c3aed;  /* насичений фіолетовий для контрасту */
+    color: #ffffff;             /* білий текст */
+    border: 1px solid #a78bfa; /* світліший контур для видимості */
+}
+
+body.dark .img-button:hover {
+    background-color: #5b21b6;  /* темніший фіолетовий при ховері */
+    color: #ffffff;
+    border-color: #c4b5fd;      /* світліший контур */
+}
+
+
+
+
+#openPopup {
+    display: block;      /* щоб можна було застосувати margin */
+    margin: 20px auto;   /* 20px зверху/знизу, по центру горизонтально */
+    text-align: center;  /* центр тексту всередині кнопки/посилання */
+}
+
+
+
+/* Заголовки по центру */
+.central-content h1,
+.central-content h2,
+.central-content h3 {
+    text-align: center;
+}
+
+/* Основний текст лишається зліва */
+.central-content p {
+    text-align: left;
+}
+
+/* Підпис під попапом по центру */
+#openPopup + p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* стандартні посилання */
+a {
+    color: #1a0dab;          /* класичний синій */
+    text-decoration: underline;
+}
+
+/* при наведенні */
+a:hover {
+    color: #551a8b;
+}
+
+/* темна тема */
+body.dark a {
+    color: #8ab4f8;
+}
+
+body.dark a:hover {
+    color: #a8c7fa;
+}
+
+
+
+.star-rating + p {
+    text-align: center;
+}
+
+
+
+/* навігаційне меню — світла тема */
+.nav-link {
+    color: #000;
+    text-decoration: none;
+}
+
+/* hover */
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+/* навігаційне меню — темна тема */
+body.dark .nav-link {
+    color: #ffffff;
+}

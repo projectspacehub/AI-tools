@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/png" href="fav.avif">
+    <title>Інструменти — AI Tools Guide</title>
+
+    <style>
+      .zoom { transition: transform 0.3s ease; }
+      .zoom:hover { transform: scale(1.05); cursor: pointer; }
+    </style>
+</head>
+
+<body bgcolor="#f7f9fc">
+
+<!-- ===== HEADER ===== -->
+<table width="100%" bgcolor="#d0e6f7" cellpadding="20">
+    <tr>
+        <td>
+            <!-- Лого + текст у одному рядку -->
+            <a href="index.html" style="display:inline-block;">
+  <img src="logo (2).png" width="80" alt="Лого"
+       style="vertical-align:middle;">
+</a>
+            <font size="5"><b>AI Tools Guide</b></font>
+        </td>
+
+        <td align="right">
+            <h3 style="margin:0;">
+                <a href="index.html" style="text-decoration:none; color:#080a0b;">Головна</a> |
+                <a href="tools.html" style="text-decoration:none; color:#080a0b;"><b>Інструменти</b></a>
+            </h3>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<!-- ===== MAIN CONTENT WITH SIDEBAR ===== -->
+<table width="90%" align="center" cellpadding="20">
+  <tr valign="top">
+
+    <!-- ===== LEFT: MAIN CONTENT (TOOLS PAGE) ===== -->
+    <td width="70%">
+
+      <!-- ===== HERO ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="22" cellspacing="0" style="border-radius:16px;">
+        <tr>
+          <td width="70%" valign="top">
+            <font size="6"><b>Інструменти</b></font><br><br>
+            <font size="3">
+              Практична сторінка: як ефективно працювати з AI-інструментами, як писати запити (prompts),
+              типові помилки та лайфхаки. 
+            </font>
+            <br><br>
+
+            <table cellpadding="0" cellspacing="0">
+              <tr>
+                <td bgcolor="#eef6ff" style="padding:8px 12px; border-radius:999px;">
+                  <font size="3"><b>Навігація:</b> Поради • Формула • Лайфхаки • AI vs Людина • Помилки • Майбутнє</font>
+                </td>
+              </tr>
+            </table>
+          </td>
+
+         
+        </tr>
+      </table>
+
+      <br>
+
+      <!-- ===== SECTION 1 ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+        <tr>
+          <td width="72%" valign="top">
+            <font size="5"><b id="howto">1) Як ефективно використовувати AI-інструменти</b></font><br><br>
+
+            <table width="100%" cellpadding="12" cellspacing="0" bgcolor="#f7f9fc" style="border-radius:12px;">
+              <tr>
+                <td>
+                  <font size="3">
+                    <b>Крок 1 — визнач ціль:</b> що саме хочеш отримати (текст / ідеї / аналіз / план).<br><br>
+                    <b>Крок 2 — додай контекст:</b> тема, аудиторія, стиль, обсяг, обмеження.<br><br>
+                    <b>Крок 3 — зафіксуй формат:</b> список, таблиця, коротко/детально, кроки.<br><br>
+                    <b>Крок 4 — уточнюй:</b> “зроби коротше”, “додай приклад”, “переформулюй простіше”.
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+            <br>
+
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td bgcolor="#eef6ff" style="padding:12px; border-radius:12px;">
+                  <font size="3"><b>Порада:</b> якщо відповідь “не та” — змінюй запит, а не проси те саме ще раз.</font>
+                </td>
+                <td width="10"></td>
+                <td bgcolor="#eef6ff" style="padding:12px; border-radius:12px;">
+                  <font size="3"><b>Порада:</b> проси 2–3 варіанти — потім обери найкращий.</font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+
+          <td width="28%" valign="top">
+            <!-- КАРТИНКА: steps.png -->
+            <img src="steps.png" alt="Steps illustration" width="370" style="border-radius:14px;" class="zoom"><br>
+            
+
+            <table width="100%" bgcolor="#eef6ff" cellpadding="12" cellspacing="0" style="border-radius:12px;">
+              <tr>
+                <td>
+                  <font size="3"><b>Міні-чеклист</b></font><br><br>
+                  <font size="3">
+                    ✅ Ціль<br>
+                    ✅ Контекст<br>
+                    ✅ Формат<br>
+                    ✅ Обмеження
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+
+      <br>
+
+      <!-- ===== SECTION 2 ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+        <tr>
+         
+
+          <td width="70%" valign="top" style="padding-left:10px;">
+            <font size="5"><b id="formula">2) Формула ідеального AI-запиту</b></font><br><br>
+
+            <table width="100%" cellpadding="14" cellspacing="0" bgcolor="#f7f9fc" style="border-radius:12px;">
+              <tr>
+                <td>
+                  <font size="3">
+                    <b>Роль → Завдання → Контекст → Формат → Обмеження</b><br><br>
+                    <b>Приклад запиту:</b><br>
+                    “Ти — редактор. Перепиши текст для сайту українською, тон дружній.
+                    Формат — 5 коротких абзаців. Без повторів і води.”
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+            <br>
+
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="50%" bgcolor="#eef6ff" style="padding:12px; border-radius:12px;">
+                  <font size="4"><b>✅ Do</b></font><br>
+                  <font size="3">
+                    • конкретна задача<br>
+                    • контекст і деталі<br>
+                    • чіткий формат<br>
+                    • обмеження (мова/тон/обсяг)
+                  </font>
+                </td>
+                <td width="10"></td>
+                <td width="50%" bgcolor="#ffecec" style="padding:12px; border-radius:12px;">
+                  <font size="4"><b>❌ Don’t</b></font><br>
+                  <font size="3">
+                    • “зроби красиво” без деталей<br>
+                    • супер загальні запити<br>
+                    • очікування 100% точності без перевірки<br>
+                    • суперечливі вимоги
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+
+      <br>
+
+      <!-- ===== SECTION 3: LIFEHACKS ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+        <tr>
+          <td>
+            <font size="5"><b id="hacks">3) AI-лайфхаки</b></font><br>
+            <font size="3">Невеликі прийоми, які реально покращують результат.</font>
+            <br><br>
+
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="33%" valign="top" style="padding-right:10px;">
+                  <table width="100%" bgcolor="#f7f9fc" cellpadding="14" cellspacing="0" style="border-radius:14px;">
+                    <tr><td>
+                      <img src="hack-variants.png" alt="Ask for variants" width="230" style="border-radius:10px;" class="zoom"><br>
+                      
+                      <font size="4"><b>Проси 2–3 варіанти</b></font><br>
+                      <font size="3">Порівняєш відповіді і вибереш найкращу.</font>
+                    </td></tr>
+                  </table>
+                </td>
+
+                <td width="33%" valign="top" style="padding:0 10px;">
+                  <table width="100%" bgcolor="#f7f9fc" cellpadding="14" cellspacing="0" style="border-radius:14px;">
+                    <tr><td>
+                      <img src="hack-constraints.png" alt="Add constraints" width="230" style="border-radius:10px;" class="zoom"><br>
+                      
+                      <font size="4"><b>Додавай обмеження</b></font><br>
+                      <font size="3">Мова, стиль, обсяг, аудиторія — і результат буде точніший.</font>
+                    </td></tr>
+                  </table>
+                </td>
+
+                <td width="33%" valign="top" style="padding-left:10px;">
+                  <table width="100%" bgcolor="#f7f9fc" cellpadding="14" cellspacing="0" style="border-radius:14px;">
+                    <tr><td>
+                      <img src="hack-refine.png" alt="Refine output" width="230" style="border-radius:10px;" class="zoom"><br>
+                      
+                      <font size="4"><b>Уточнюй після 1-ї відповіді</b></font><br>
+                      <font size="3">Попроси “коротше”, “простішими словами”, “додай приклад”.</font>
+                    </td></tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+
+      <br>
+
+      <!-- ===== SECTION 4: AI vs HUMAN ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+        <tr>
+          <td width="65%" valign="top">
+            <font size="5"><b id="vs">4) AI vs Людина</b></font><br><br>
+
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="50%" bgcolor="#eef6ff" style="padding:14px; border-radius:14px;">
+                  <font size="4"><b>AI сильний у:</b></font><br><br>
+                  <font size="3">
+                    • швидкому створенні чернеток<br>
+                    • узагальненні та структуруванні<br>
+                    • генерації ідей і варіантів<br>
+                    • рутинних повторюваних задачах
+                  </font>
+                </td>
+                <td width="10"></td>
+                <td width="50%" bgcolor="#eef6ff" style="padding:14px; border-radius:14px;">
+                  <font size="4"><b>Людина сильна у:</b></font><br><br>
+                  <font size="3">
+                    • критичному мисленні<br>
+                    • відповідальності за рішення<br>
+                    • розумінні контексту та етики<br>
+                    • творчих і нестандартних підходах
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+            <br>
+
+            <table width="100%" bgcolor="#eef6ff" cellpadding="12" cellspacing="0" style="border-radius:12px;">
+              <tr>
+                <td>
+                  <font size="3"><b>Висновок:</b> AI — помічник. Найкращий результат виходить у парі “людина + AI”.</font>
+                </td>
+              </tr>
+            </table>
+          </td>
+
+          
+        </tr>
+      </table>
+
+      <br>
+
+      <!-- ===== SECTION 5: MISTAKES ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+        <tr>
+          <td width="30%" valign="top">
+            <!-- КАРТИНКА: mistakes.png -->
+            <img src="mistakes.png" alt="Common mistakes" width="300" style="border-radius:14px;" class="zoom"><br>
+           
+          </td>
+
+          <td width="70%" valign="top" style="padding-left:10px;">
+            <font size="5"><b id="mistakes">5) Типові помилки</b></font><br><br>
+
+            <table width="100%" cellpadding="14" cellspacing="0" bgcolor="#ffecec" style="border-radius:12px;">
+              <tr>
+                <td>
+                  <font size="3">
+                    • занадто короткий або нечіткий запит<br>
+                    • немає контексту (для кого, навіщо, який стиль)<br>
+                    • не вказаний формат результату<br>
+                    • очікування “ідеалу” з першого разу без уточнень<br>
+                    • сліпа довіра без перевірки фактів
+                  </font>
+                </td>
+              </tr>
+            </table>
+
+            <br>
+
+            <table width="100%" cellpadding="14" cellspacing="0" bgcolor="#eef6ff" style="border-radius:12px;">
+              <tr>
+                <td>
+                  <font size="3"><b>Як виправити:</b> додай 2–3 деталі в запит і попроси відповідь у чіткому форматі (список/кроки).</font>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+      </table>
+
+      <br>
+
+      <!-- ===== SECTION 6: FUTURE ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+        <tr>
+          <td width="70%" valign="top">
+            <font size="5"><b id="future">6) Майбутнє AI-інструментів</b></font><br><br>
+            <font size="3">
+              AI-інструменти стають більш персоналізованими та інтегрованими у щоденні задачі.
+              З часом вони допомагатимуть швидше виконувати рутину, підказувати рішення та підтримувати роботу в різних сферах.
+              Роль людини залишається ключовою — саме людина визначає цілі, перевіряє результат і приймає рішення.
+            </font>
+
+            <br><br>
+
+            <table width="100%" bgcolor="#eef6ff" cellpadding="14" cellspacing="0" style="border-radius:12px;">
+              <tr>
+                <td>
+                  <font size="3"><b>AI-інструменти:</b> у майбутньому можуть стати звичними цифровими помічниками, які допомагатимуть навчатися, працювати та створювати нові ідеї значно швидше.</font>
+                </td>
+              </tr>
+            </table>
+          </td>
+
+          
+        </tr>
+      </table>
+
+      <br>
+
+      <!-- ===== OPTIONAL: ANCHOR LINKS ===== -->
+      <table width="100%" bgcolor="#ffffff" cellpadding="14" cellspacing="0" style="border-radius:16px;">
+        <tr>
+          <td>
+            <font size="3">
+              <b>Швидкі посилання по сторінці:</b>
+              <a href="#howto">Поради</a> •
+              <a href="#formula">Формула</a> •
+              <a href="#hacks">Лайфхаки</a> •
+              <a href="#vs">AI vs Людина</a> •
+              <a href="#mistakes">Помилки</a> •
+              <a href="#future">Майбутнє</a>
+            </font>
+          </td>
+        </tr>
+      </table>
+
+    </td>
+
+    <!-- ===== RIGHT: SIDEBAR (UNCHANGED) ===== -->
+    <td width="30%" bgcolor="#e3f0fa" align="center" style="vertical-align:top; padding:20px;">
+        
+        <!-- 1️⃣ Вибір AI -->
+        <b>Виберіть AI інструмент:</b>
+        <br><br>
+        <select id="aiSelect">
+          <option value="" selected disabled hidden>-- Оберіть інструмент --</option>
+          <option value="chatgpt.html">ChatGPT</option>
+          <option value="googlegemini.html">Google Gemini</option>
+          <option value="Midjourney.html">Midjourney</option>
+          <option value="DALL-E.html">DALL·E</option>
+          <option value="copilot.html">Microsoft Copilot</option>
+        </select>
+
+        <br><br><br><br><br><br><br>
+
+        <!-- 2️⃣ Картки “Цікаво знати” -->
+        <b>Цікаво знати:</b>
+        <div style="width:100%; text-align:left;">
+            <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
+                🤖 AI здатен писати музику, яку можна слухати та виконувати живими музикантами.
+            </div>
+            <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
+                🌌 Деякі AI-моделі створюють космічні пейзажі, які виглядають реалістично.
+            </div>
+            <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
+                🧠 Деякі нейромережі навчилися грати в відеоігри краще за людей, інколи роблячи речі, які люди не передбачали.
+            </div>
+        </div>
+
+        <br>
+
+        <!-- ===== Опитування ===== -->
+        <b>Опитування:</b>
+        <div id="poll" style="text-align:left; margin-top:5px;">
+            <p>Який AI ти використовуєш найчастіше?</p>
+            
+            <label class="radioContainer">ChatGPT
+                <input type="radio" name="ai" value="ChatGPT">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">Google Gemini
+                <input type="radio" name="ai" value="Google Gemini">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">Midjourney
+                <input type="radio" name="ai" value="Midjourney">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">DALL·E
+                <input type="radio" name="ai" value="DALL·E">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="radioContainer">Microsoft Copilot
+                <input type="radio" name="ai" value="Microsoft Copilot">
+                <span class="checkmark"></span>
+            </label>
+
+            <button onclick="submitVote()" style="margin-top:10px; padding:5px 10px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer;">Підтвердити</button>
+        </div>
+
+        <style>
+          .radioContainer {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+          }
+          .radioContainer input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+          }
+          .checkmark {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            background-color: #eee;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            transition: 0.2s;
+          }
+          .radioContainer input:checked ~ .checkmark {
+            background-color: #2c3e50;
+            border-color: #1a2a38;
+          }
+          .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+          }
+          .radioContainer input:checked ~ .checkmark:after {
+            display: block;
+          }
+          .radioContainer .checkmark:after {
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+          }
+          button:hover { background:#1a2a38; }
+        </style>
+
+        <script>
+        function submitVote() {
+            const radios = document.getElementsByName('ai');
+            let selected = null;
+            for (const r of radios) {
+                if (r.checked) { selected = r.value; break; }
+            }
+            if (selected) alert(`Ви обрали: ${selected}`);
+            else alert('Будь ласка, оберіть AI перед підтвердженням!');
+        }
+        </script>
+
+        <br>
+
+        <!-- ===== Міні-чат ===== -->
+        <b>Міні-чат для ідей:</b>
+        <p style="font-size:12px; color:#555;">Введи свій промт і збережи локально:</p>
+        <textarea id="ideaInput" rows="3" style="width:100%; padding:5px;"></textarea>
+        <br>
+        <button onclick="saveIdea()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Зберегти</button>
+        <button onclick="clearIdeas()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Очистити всі ідеї</button>
+        <div id="savedIdeas" style="margin-top:10px; font-size:13px; color:#333;"></div>
+
+        <script>
+          function saveIdea() {
+              const input = document.getElementById('ideaInput');
+              const text = input.value.trim();
+              if(!text) return alert('Введіть текст!');
+              
+              let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+              ideas.push(text);
+              localStorage.setItem('ideas', JSON.stringify(ideas));
+              input.value = '';
+              renderIdeas();
+          }
+
+          function renderIdeas() {
+              let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+              const container = document.getElementById('savedIdeas');
+              container.innerHTML = '';
+              ideas.forEach((idea) => {
+                  container.innerHTML += `<div>💡 ${idea}</div>`;
+              });
+          }
+
+          function clearIdeas() {
+              localStorage.removeItem('ideas');
+              renderIdeas();
+          }
+
+          window.addEventListener('load', () => {
+              let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+              if(ideas.length > 1){
+                  ideas = [ideas[0]];
+                  localStorage.setItem('ideas', JSON.stringify(ideas));
+              }
+              renderIdeas();
+          });
+        </script>
+
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<!-- ===== FOOTER ===== -->
+<table width="100%" bgcolor="#d6ebf9" cellpadding="20">
+  <tr>
+    <td align="center">
+      <i>© 2026 AI Tools Guide. Всі права захищені.</i>
+    </td>
+  </tr>
+</table>
+
+<!-- ===== SELECT: AUTO CHOOSE CURRENT PAGE + NAVIGATE ===== -->
+<script>
+const select = document.getElementById("aiSelect");
+
+// назва файлу БЕЗ параметрів ? і # (щоб збіг точно знаходився)
+const page = decodeURIComponent(window.location.pathname.split("/").pop() || "")
+  .split("?")[0]
+  .split("#")[0];
+
+const isHomePage = !page || page === "index.html";
+
+if (!isHomePage) {
+  if ([...select.options].some(o => o.value === page)) {
+    select.value = page;
+  } else {
+    select.selectedIndex = 0;
+  }
+} else {
+  select.selectedIndex = 0;
+}
+
+select.addEventListener("change", function () {
+  if (this.value && this.value !== "#") {
+    window.location.href = this.value;
+  }
+});
+</script>
+
+</body>
+</html>
