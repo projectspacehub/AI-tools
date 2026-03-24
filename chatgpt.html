@@ -1,36 +1,335 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="icon" type="image/png" href="fav.avif">
-    
-<title>AI tools</title>
-
     <title>AI tools</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .zoom {
+            transition: transform 0.3s ease;
+        }
+
+        .zoom:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        .hero-main-img {
+            width: 500px;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .radioContainer {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        .radioContainer input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            background-color: #eee;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            transition: 0.2s;
+        }
+
+        .radioContainer input:checked ~ .checkmark {
+            background-color: #2c3e50;
+            border-color: #1a2a38;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .radioContainer input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .radioContainer .checkmark:after {
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        button:hover {
+            background:#1a2a38;
+            opacity: 0.95;
+        }
+
+        .pollBtn {
+            background:#2c3e50;
+            color:#fff;
+            border:none;
+            border-radius:5px;
+            padding:5px 10px;
+            margin:3px 2px;
+            cursor:pointer;
+            font-size:13px;
+            transition:0.2s;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .mobile-full,
+            .main-layout,
+            .hero-table,
+            .about-table,
+            .features-table,
+            .prompts-table {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+            }
+
+            .main-layout {
+                padding: 0 10px;
+            }
+
+            .header-left,
+            .header-right {
+                display: block;
+                width: 100% !important;
+                text-align: center !important;
+                padding: 12px 10px !important;
+            }
+
+            .header-right h3 {
+                margin: 8px 0 0 0;
+                line-height: 1.5;
+                font-size: 18px;
+            }
+
+            .header-right a {
+                display: inline-block;
+                margin: 2px 4px;
+                white-space: normal;
+            }
+
+            .main-layout > tbody > tr,
+            .hero-table > tbody > tr,
+            .features-table > tbody > tr {
+                display: block;
+                width: 100% !important;
+            }
+
+            .main-left,
+            .main-right,
+            .hero-empty,
+            .hero-text,
+            .hero-image,
+            .feature-card {
+                display: block;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .hero-empty {
+                display: none;
+            }
+
+            .main-left,
+            .main-right {
+                padding: 10px 0 !important;
+            }
+
+            .sidebar {
+                margin-top: 15px;
+                padding: 15px !important;
+            }
+
+            .sidebar-spacer {
+                display: none;
+            }
+
+            .hero-text,
+            .hero-image,
+            .feature-card,
+            .header-left,
+            .header-right,
+            .prompts-table td,
+            .about-table td {
+                text-align: center !important;
+            }
+
+            .about-table td,
+            .prompts-table td,
+            .feature-card,
+            .sidebar {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+
+            .hero-text {
+                padding: 15px !important;
+            }
+
+            .hero-text h1 {
+                font-size: 28px;
+                margin-top: 0;
+                margin-bottom: 12px;
+            }
+
+            .hero-text p,
+            .about-table p,
+            .prompts-table p,
+            .feature-card p,
+            .sidebar p,
+            .sidebar b,
+            .sidebar label,
+            .sidebar div,
+            li {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+
+            .hero-main-img {
+                display: block;
+                width: 100% !important;
+                max-width: 500px !important;
+                height: auto !important;
+                margin: 0 auto;
+            }
+
+            .feature-card {
+                margin-bottom: 15px;
+                padding-top: 15px !important;
+                padding-bottom: 15px !important;
+            }
+
+            .feature-card img {
+                display: block;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                margin: 0 auto 10px auto;
+                object-fit: cover;
+            }
+
+            .about-table img {
+                display: block;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            ul {
+                text-align: left;
+                padding-left: 22px;
+                margin-left: 0;
+            }
+
+            #aiSelect,
+            #ideaInput,
+            button {
+                width: 100% !important;
+                max-width: 100% !important;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #poll {
+                text-align: left !important;
+            }
+
+            .sidebar > b,
+            .sidebar > p,
+            .sidebar select,
+            .sidebar textarea,
+            .sidebar #savedIdeas {
+                text-align: center;
+            }
+
+            .sidebar div[style*="text-align:left"] {
+                text-align: left !important;
+            }
+
+            table[width="100%"],
+            table[width="90%"] {
+                width: 100% !important;
+            }
+
+            td[width="70%"],
+            td[width="30%"],
+            td[width="50%"],
+            td[width="33%"],
+            td[width="120"] {
+                width: 100% !important;
+            }
+
+            font[size="5"] {
+                display: inline-block;
+                margin-top: 8px;
+            }
+
+            h2 {
+                font-size: 24px;
+                margin-top: 0;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
 </head>
 <body bgcolor="#f7f9fc">
 
 <!-- ===== HEADER ===== -->
-<table width="100%" bgcolor="#d0e6f7" cellpadding="20">
+<table class="mobile-full" width="100%" bgcolor="#d0e6f7" cellpadding="20">
     <tr>
-        <td 
-            <!-- Лого + текст у одному рядку -->
-           <a href="index.html" style="display:inline-block;">
-  <img src="logo (2).png" width="80" alt="Лого"
-       style="vertical-align:middle;">
-</a>
+        <td class="header-left">
+            <a href="index.html" style="display:inline-block;">
+                <img src="logo (2).png" width="80" alt="Лого" style="vertical-align:middle;">
+            </a>
             <font size="5"><b>AI Tools Guide</b></font>
-            
         </td>
-        <td align="right">
+        <td class="header-right" align="right">
             <font>
                 <h3>
-                <a href="index.html" style="text-decoration:none; color:#080a0b;">Головна</a> |
-                <a href="tools.html" style="text-decoration:none; color:#080a0b;">Інструменти</a> 
-                
+                    <a href="index.html" style="text-decoration:none; color:#080a0b;">Головна</a> |
+                    <a href="tools.html" style="text-decoration:none; color:#080a0b;">Інструменти</a>
                 </h3>
             </font>
         </td>
@@ -38,261 +337,224 @@
 </table>
 
 <br>
+
 <!-- ===== MAIN CONTENT WITH SIDEBAR ===== -->
-<table  width="90%" align="center" cellpadding="20">
+<table class="main-layout" width="90%" align="center" cellpadding="20">
     <tr valign="top">
         <!-- Лівий блок: основний контент -->
-        <td width="70%">
+        <td class="main-left" width="70%">
 
             <!-- HERO -->
-            <table width="100%" bgcolor="#ffffff" cellpadding="20">
+            <table class="hero-table" width="100%" bgcolor="#ffffff" cellpadding="20">
                 <tr>
-                    <td width="120" align="center">
-          
-        </td>
-                    <td width="50%">
+                    <td class="hero-empty" width="120" align="center">
+                    </td>
+                    <td class="hero-text" width="50%">
                         <h1>ChatGPT</h1>
                         <p>
                             <b>ChatGPT</b> — це потужний AI-асистент, розроблений компанією OpenAI, який допомагає користувачам працювати з текстом, ідеями, кодом, навчанням та різними повсякденними завданнями.
                         </p>
-                        <p> ChatGPT може відповідати на запитання, генерувати тексти, пояснювати складні теми, допомагати з програмуванням та створювати нові ідеї для роботи, навчання і бізнесу.
-</p>
-<a href="https://chat.openai.com" target="_blank"
-style="display:inline-block; margin-top:10px; padding:10px 16px;
-background:#2c3e50; color:#fff; text-decoration:none; border-radius:8px;"> Спробувати GPT
-</a>
+                        <p>
+                            ChatGPT може відповідати на запитання, генерувати тексти, пояснювати складні теми, допомагати з програмуванням та створювати нові ідеї для роботи, навчання і бізнесу.
+                        </p>
+                        <a href="https://chat.openai.com" target="_blank"
+                           style="display:inline-block; margin-top:10px; padding:10px 16px; background:#2c3e50; color:#fff; text-decoration:none; border-radius:8px;">
+                            Спробувати GPT
+                        </a>
                     </td>
-                    <td align="center">
-                       <img src="g1.jpg" width="500" height="280" alt="" class="zoom">
-                       <style>
-.zoom {
-    transition: transform 0.3s ease;
-}
-.zoom:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-</style>
+                    <td class="hero-image" align="center">
+                        <img src="g1.jpg" alt="" class="zoom hero-main-img">
                     </td>
                 </tr>
             </table>
 
             <br>
 
-<!-- ===== ABOUT ===== -->
-<table width="90%" align="center" cellpadding="25">
-<tr bgcolor="#ffffff" style="border-radius:12px;">
-<td>
-<h2>Що таке ChatGPT?</h2>
+            <!-- ===== ABOUT ===== -->
+            <table class="about-table" width="90%" align="center" cellpadding="25">
+                <tr bgcolor="#ffffff" style="border-radius:12px;">
+                    <td>
+                        <h2>Що таке ChatGPT?</h2>
 
-<p>
-ChatGPT — це сучасна мовна модель штучного інтелекту, створена компанією OpenAI. Вона використовує технології машинного навчання для аналізу тексту, розуміння контексту та генерації змістовних відповідей.
+                        <p>
+                            ChatGPT — це сучасна мовна модель штучного інтелекту, створена компанією OpenAI. Вона використовує технології машинного навчання для аналізу тексту, розуміння контексту та генерації змістовних відповідей.
+                        </p>
 
-ChatGPT може працювати як універсальний цифровий помічник для навчання, роботи, програмування та створення контенту.
+                        <p>
+                            ChatGPT може працювати як універсальний цифровий помічник для навчання, роботи, програмування та створення контенту.
+                        </p>
 
-<img src="g2.jpg"
-     width="100%"
-     style="border-radius:14px; margin:15px 0;"
-     alt="GPT AI Concept">
-</p>
+                        <img src="g2.jpg"
+                             width="100%"
+                             style="border-radius:14px; margin:15px 0;"
+                             alt="GPT AI Concept">
 
-<p>
-Основні можливості ChatGPT:
-</p>
+                        <p>
+                            Основні можливості ChatGPT:
+                        </p>
 
-<ul>
-<li> генерація тексту</li>
-<li> пояснення складних тем простими словами</li>
-<li> допомога з програмуванням</li>
-<li> створення ідей та креативного контенту</li>
-<li> аналіз інформації та підготовка резюме текстів</li>
-</ul>
-</td>
-</tr>
+                        <ul>
+                            <li>генерація тексту</li>
+                            <li>пояснення складних тем простими словами</li>
+                            <li>допомога з програмуванням</li>
+                            <li>створення ідей та креативного контенту</li>
+                            <li>аналіз інформації та підготовка резюме текстів</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+
+            <!-- ===== FEATURES ===== -->
+            <table class="features-table" width="90%" align="center" cellpadding="15">
+                <tr>
+                    <td class="feature-card" width="33%" bgcolor="#ffffff" style="border-radius:12px;">
+                        <img src="g4.png" style="width:100%; height:220px; object-fit:cover; border-radius:10px;" alt="">
+                        <h3>📝 Створення та редагування текстів</h3>
+                        <p>
+                            ChatGPT може допомагати створювати різні види текстового контенту: від коротких описів до повноцінних статей. Також інструмент здатний редагувати текст, покращувати стиль написання.
+                        </p>
+                    </td>
+
+                    <td class="feature-card" width="33%" bgcolor="#ffffff" style="border-radius:12px;">
+                        <img src="g3.jpeg" style="width:100%; height:220px; object-fit:cover; border-radius:10px;" alt="">
+                        <h3>📊 Робота з інформацією</h3>
+                        <p>
+                            ChatGPT може обробляти інформацію, знаходити ключові ідеї в текстах, порівнювати різні дані та допомагати формувати логічні висновки. Це робить інструмент корисним для навчання, досліджень та аналітики.
+                        </p>
+                    </td>
+
+                    <td class="feature-card" width="33%" bgcolor="#ffffff" style="border-radius:12px;">
+                        <img src="g5.jpg" style="width:100%; height:220px; object-fit:cover; border-radius:10px;" alt="">
+                        <h3>💻 Підтримка програмування</h3>
+                        <p>
+                            Інструмент може допомагати розробникам писати код, пояснювати принципи роботи алгоритмів, знаходити помилки у програмі та пропонувати можливі варіанти оптимізації, прискорює написання коду.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+
+            <!-- ===== PROMPTS ===== -->
+            <table class="prompts-table" width="90%" align="center" bgcolor="#ffffff" cellpadding="25" style="border-radius:12px;">
+                <tr>
+                    <td>
+                        <h2>Приклади промтів</h2>
+
+                        <p><b>🎓 Освіта</b><br>
+                        «Поясни простими словами, що таке машинне навчання і як воно працює»</p>
+
+                        <p><b>🚀 Підприємництво</b><br>
+                        «Запропонуй декілька ідей для онлайн-бізнесу у сфері технологій»</p>
+
+                        <p><b>🎨 Творчість</b><br>
+                        «Створи ідею сценарію для короткого відео про розвиток штучного інтелекту»</p>
+
+                        <p><b>🧑‍💻 Програмування</b><br>
+                        «Напиши приклад простого JavaScript коду для зворотного відліку часу»</p>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+
+        <!-- ===== Бокова панель ===== -->
+        <td class="main-right sidebar" width="30%" bgcolor="#e3f0fa" align="center" style="vertical-align:top; padding:20px;">
+            
+            <b>Виберіть AI інструмент:</b>
+            <br><br>
+            <select id="aiSelect">
+                <option value="" selected disabled hidden>-- Оберіть інструмент --</option>
+                <option value="chatgpt.html">ChatGPT</option>
+                <option value="googlegemini.html">Google Gemini</option>
+                <option value="Midjourney.html">Midjourney</option>
+                <option value="DALL-E.html">DALL·E</option>
+                <option value="copilot.html">Microsoft Copilot</option>
+            </select>
+
+            <div class="sidebar-spacer">
+                <br><br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+
+            <b>Цікаво знати:</b>
+            <div style="width:100%; text-align:left;">
+                <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
+                    🤖 AI здатен писати музику, яку можна слухати та виконувати живими музикантами.
+                </div>
+                <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
+                    🌌 Деякі AI-моделі створюють космічні пейзажі, які виглядають реалістично.
+                </div>
+                <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
+                    🧠 Деякі нейромережі навчилися грати в відеоігри краще за людей, інколи роблячи речі, які люди не передбачали.
+                </div>
+            </div>
+
+            <br>
+
+            <b>Опитування:</b>
+            <div id="poll" style="text-align:left; margin-top:5px;">
+                <p>Який AI ти використовуєш найчастіше?</p>
+                
+                <label class="radioContainer">ChatGPT
+                    <input type="radio" name="ai" value="ChatGPT">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radioContainer">Google Gemini
+                    <input type="radio" name="ai" value="Google Gemini">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radioContainer">Midjourney
+                    <input type="radio" name="ai" value="Midjourney">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radioContainer">DALL·E
+                    <input type="radio" name="ai" value="DALL·E">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="radioContainer">Microsoft Copilot
+                    <input type="radio" name="ai" value="Microsoft Copilot">
+                    <span class="checkmark"></span>
+                </label>
+
+                <button onclick="submitVote()" style="margin-top:10px; padding:5px 10px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer;">Підтвердити</button>
+            </div>
+
+            <br>
+
+            <b>Міні-чат для ідей:</b>
+            <p style="font-size:12px; color:#555;">Введи свій промт і збережи локально:</p>
+            <textarea id="ideaInput" rows="3" style="width:100%; padding:5px;"></textarea>
+            <br>
+            <button onclick="saveIdea()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Зберегти</button>
+            <button onclick="clearIdeas()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Очистити всі ідеї</button>
+            <div id="savedIdeas" style="margin-top:10px; font-size:13px; color:#333;"></div>
+        </td>
+    </tr>
 </table>
 
 <br>
 
-<!-- ===== FEATURES ===== -->
-<table width="90%" align="center" cellpadding="15">
-<tr>
-
-<td width="33%" bgcolor="#ffffff" style="border-radius:12px;">
-<img src="g4.png" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
-<h3>📝 Створення та редагування текстів</h3>
-<p>
-ChatGPT може допомагати створювати різні види текстового контенту: від коротких описів до повноцінних статей. Також інструмент здатний редагувати текст, покращувати стиль написання.
-</td>
-
-<td width="33%" bgcolor="#ffffff" style="border-radius:12px;">
-<img src="g3.jpeg" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
-<h3>📊 Робота з інформацією</h3>
-<p>
-ChatGPT може обробляти інформацію, знаходити ключові ідеї в текстах, порівнювати різні дані та допомагати формувати логічні висновки. Це робить інструмент корисним для навчання, досліджень та аналітики.
-</p>
-</td>
-
-<td width="33%" bgcolor="#ffffff" style="border-radius:12px;">
-<img src="g5.jpg" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
-<h3>💻 Підтримка програмування</h3>
-<p>
-Інструмент може допомагати розробникам писати код, пояснювати принципи роботи алгоритмів, знаходити помилки у програмі та пропонувати можливі варіанти оптимізації, прискорює написання коду.
-</p>
-<td>
-
-</tr>
+<!-- ===== FOOTER ===== -->
+<table class="mobile-full" width="100%" bgcolor="#d6ebf9" cellpadding="20">
+    <tr>
+        <td align="center">
+            <i>© 2026 AI Tools Guide. Всі права захищені.</i>
+        </td>
+    </tr>
 </table>
-
-<br>
-
-<!-- ===== PROMPTS ===== -->
-<table width="90%" align="center" bgcolor="#ffffff" cellpadding="25" style="border-radius:12px;">
-<tr>
-<td>
-<h2>Приклади промтів</h2>
-
-<p><b>🎓 Освіта</b><br>
-«Поясни простими словами, що таке машинне навчання і як воно працює»</p>
-
-<p><b>🚀 Підприємництво</b><br>
-«Запропонуй декілька ідей для онлайн-бізнесу у сфері технологій»</p>
-
-<p><b>🎨 Творчість</b><br>
-«Створи ідею сценарію для короткого відео про розвиток штучного інтелекту»</p>
-
-<p><b>🧑‍💻 Програмування</b><br>
-«Напиши приклад простого JavaScript коду для зворотного відліку часу»</p>
-</td>
-</tr>
-</table>
-
-<br>
-
-<!-- ===== Бокова панель ===== -->
-<td width="30%" bgcolor="#e3f0fa" align="center" style="vertical-align:top; padding:20px;">
-    
-    <!-- 1️⃣ Вибір AI -->
-    <b>Виберіть AI інструмент:</b>
-    <br><br>
-    <select id="aiSelect">
-    <option value="" selected disabled hidden>-- Оберіть інструмент --</option>
-    <option value="chatgpt.html">ChatGPT</option>
-    <option value="googlegemini.html">Google Gemini</option>
-    <option value="Midjourney.html">Midjourney</option>
-    <option value="DALL-E.html">DALL·E</option>
-    <option value="copilot.html">Microsoft Copilot</option>
-</select>
-
-    <br><br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-    <!-- 2️⃣ Картки “Цікаво знати” -->
-    <b>Цікаво знати:</b>
-    <div style="width:100%; text-align:left;">
-        <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
-            🤖 AI здатен писати музику, яку можна слухати та виконувати живими музикантами.
-        </div>
-        <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
-            🌌 Деякі AI-моделі створюють космічні пейзажі, які виглядають реалістично.
-        </div>
-        <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
-            🧠 Деякі нейромережі навчилися грати в відеоігри краще за людей, інколи роблячи речі, які люди не передбачали.
-        </div>
-    </div>
-
-    <br>
-
-    <!-- ===== Опитування в кружках з кнопкою ===== -->
-<b>Опитування:</b>
-<div id="poll" style="text-align:left; margin-top:5px;">
-    <p>Який AI ти використовуєш найчастіше?</p>
-    
-    <label class="radioContainer">ChatGPT
-        <input type="radio" name="ai" value="ChatGPT">
-        <span class="checkmark"></span>
-    </label>
-
-    <label class="radioContainer">Google Gemini
-        <input type="radio" name="ai" value="Google Gemini">
-        <span class="checkmark"></span>
-    </label>
-
-    <label class="radioContainer">Midjourney
-        <input type="radio" name="ai" value="Midjourney">
-        <span class="checkmark"></span>
-    </label>
-
-    <label class="radioContainer">DALL·E
-        <input type="radio" name="ai" value="DALL·E">
-        <span class="checkmark"></span>
-    </label>
-
-    <label class="radioContainer">Microsoft Copilot
-        <input type="radio" name="ai" value="Microsoft Copilot">
-        <span class="checkmark"></span>
-    </label>
-
-    <button onclick="submitVote()" style="margin-top:10px; padding:5px 10px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer;">Підтвердити</button>
-</div>
-
-<style>
-/* Кастомні кружки */
-.radioContainer {
-  display: block;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  user-select: none;
-}
-.radioContainer input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-.checkmark {
-  position: absolute;
-  top: 2px;
-  left: 0;
-  height: 18px;
-  width: 18px;
-  background-color: #eee;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  transition: 0.2s;
-}
-.radioContainer input:checked ~ .checkmark {
-  background-color: #2c3e50;
-  border-color: #1a2a38;
-}
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-.radioContainer input:checked ~ .checkmark:after {
-  display: block;
-}
-.radioContainer .checkmark:after {
-  top: 4px;
-  left: 4px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-}
-button:hover {
-    background:#1a2a38;
-}
-</style>
 
 <script>
 function submitVote() {
@@ -310,109 +572,51 @@ function submitVote() {
         alert('Будь ласка, оберіть AI перед підтвердженням!');
     }
 }
-</script>
 
-
-
-    <br>
-
-    <!-- 4️⃣ Міні-чат для ідей -->
-<b>Міні-чат для ідей:</b>
-<p style="font-size:12px; color:#555;">Введи свій промт і збережи локально:</p>
-<textarea id="ideaInput" rows="3" style="width:100%; padding:5px;"></textarea>
-<br>
-<button onclick="saveIdea()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Зберегти</button>
-<button onclick="clearIdeas()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Очистити всі ідеї</button>
-<div id="savedIdeas" style="margin-top:10px; font-size:13px; color:#333;"></div>
-
-<script>
-    // ===== Опитування =====
-    function vote(ai) {
-        document.getElementById('pollResult').innerText = `Ви обрали: ${ai}`;
+function vote(ai) {
+    const pollResult = document.getElementById('pollResult');
+    if (pollResult) {
+        pollResult.innerText = `Ви обрали: ${ai}`;
     }
+}
 
-    // ===== Міні-чат для ідей =====
-    function saveIdea() {
-        const input = document.getElementById('ideaInput');
-        const text = input.value.trim();
-        if(!text) return alert('Введіть текст!');
-        
-        let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
-        ideas.push(text);
-        localStorage.setItem('ideas', JSON.stringify(ideas));
-        input.value = '';
-        renderIdeas();
-    }
+function saveIdea() {
+    const input = document.getElementById('ideaInput');
+    const text = input.value.trim();
+    if(!text) return alert('Введіть текст!');
+    
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+    ideas.push(text);
+    localStorage.setItem('ideas', JSON.stringify(ideas));
+    input.value = '';
+    renderIdeas();
+}
 
-    function renderIdeas() {
-        let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
-        const container = document.getElementById('savedIdeas');
-        container.innerHTML = '';
-        ideas.forEach((idea) => {
-            container.innerHTML += `<div>💡 ${idea}</div>`;
-        });
-    }
-
-    // ===== Очистити всі ідеї =====
-    function clearIdeas() {
-        localStorage.removeItem('ideas');
-        renderIdeas();
-    }
-
-    // ===== При завантаженні сторінки залишаємо лише першу ідею =====
-    window.addEventListener('load', () => {
-        let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
-        if(ideas.length > 1){
-            // залишаємо тільки першу
-            ideas = [ideas[0]];
-            localStorage.setItem('ideas', JSON.stringify(ideas));
-        }
-        renderIdeas();
+function renderIdeas() {
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+    const container = document.getElementById('savedIdeas');
+    container.innerHTML = '';
+    ideas.forEach((idea) => {
+        container.innerHTML += `<div>💡 ${idea}</div>`;
     });
-</script>
+}
 
-<style>
-    .pollBtn {
-        background:#2c3e50;
-        color:#fff;
-        border:none;
-        border-radius:5px;
-        padding:5px 10px;
-        margin:3px 2px;
-        cursor:pointer;
-        font-size:13px;
-        transition:0.2s;
+function clearIdeas() {
+    localStorage.removeItem('ideas');
+    renderIdeas();
+}
+
+window.addEventListener('load', () => {
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+    if(ideas.length > 1){
+        ideas = [ideas[0]];
+        localStorage.setItem('ideas', JSON.stringify(ideas));
     }
-    .pollBtn:hover {
-        background:#1a2a38;
-    }
-    button:hover {
-        opacity: 0.9;
-    }
-</style>
-</td>
-</tr>
+    renderIdeas();
+});
 
-
-<br>
-
-<!-- ===== FOOTER ===== -->
-<table width="100%" bgcolor="#d6ebf9" cellpadding="20">
-    <tr>
-        <td align="center">
-        
-           
-            <i>© 2026 AI Tools Guide. Всі права захищені.</i>
-
-            </td>
-            </tr>
-
-
-</table>
-<script>
 const select = document.getElementById("aiSelect");
 
-// назва файлу БЕЗ параметрів ? і # (щоб збіг точно знаходився)
 const page = decodeURIComponent(window.location.pathname.split("/").pop() || "")
   .split("?")[0]
   .split("#")[0];
@@ -420,18 +624,15 @@ const page = decodeURIComponent(window.location.pathname.split("/").pop() || "")
 const isHomePage = !page || page === "index.html";
 
 if (!isHomePage) {
-  // якщо є такий value — вибере його
   if ([...select.options].some(o => o.value === page)) {
     select.value = page;
   } else {
-    // якщо не знайшли збіг — показуємо плейсхолдер
     select.selectedIndex = 0;
   }
 } else {
   select.selectedIndex = 0;
 }
 
-// зміна селекту → перехід
 select.addEventListener("change", function () {
   if (this.value && this.value !== "#") {
     window.location.href = this.value;
@@ -441,4 +642,3 @@ select.addEventListener("change", function () {
 
 </body>
 </html>
-
