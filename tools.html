@@ -9,8 +9,326 @@
     <title>Інструменти — AI Tools Guide</title>
 
     <style>
-      .zoom { transition: transform 0.3s ease; }
-      .zoom:hover { transform: scale(1.05); cursor: pointer; }
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      .zoom {
+        transition: transform 0.3s ease;
+      }
+
+      .zoom:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+
+      .radioContainer {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        user-select: none;
+      }
+
+      .radioContainer input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 18px;
+        width: 18px;
+        background-color: #eee;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        transition: 0.2s;
+      }
+
+      .radioContainer input:checked ~ .checkmark {
+        background-color: #2c3e50;
+        border-color: #1a2a38;
+      }
+
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .radioContainer input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      .radioContainer .checkmark:after {
+        top: 4px;
+        left: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+      }
+
+      button:hover {
+        background:#1a2a38;
+        opacity: 0.95;
+      }
+
+      .equal-card {
+        vertical-align: top;
+      }
+
+      @media (max-width: 768px) {
+        .main-layout,
+        .hero-table,
+        .section-table,
+        .hacks-table,
+        .vs-table,
+        .mistakes-table,
+        .future-table,
+        .quick-links-table {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 auto !important;
+        }
+
+        .main-layout {
+          padding: 0 10px;
+        }
+
+        .header-left,
+        .header-right {
+          display: block;
+          width: 100% !important;
+          text-align: center !important;
+          padding: 12px 10px !important;
+        }
+
+        .header-right h3 {
+          margin: 8px 0 0 0 !important;
+          line-height: 1.5;
+          font-size: 18px;
+        }
+
+        .header-right a {
+          display: inline-block;
+          margin: 2px 4px;
+          white-space: normal;
+        }
+
+        .main-layout > tbody > tr,
+        .hero-table > tbody > tr,
+        .hacks-table > tbody > tr,
+        .mistakes-table > tbody > tr,
+        .future-table > tbody > tr {
+          display: block;
+          width: 100% !important;
+        }
+
+        .main-left,
+        .main-right,
+        .hero-text,
+        .hero-side,
+        .section-left,
+        .section-right,
+        .hack-card-wrap,
+        .mistakes-left,
+        .mistakes-right,
+        .future-left,
+        .future-right {
+          display: block;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .main-left,
+        .main-right {
+          padding: 10px 0 !important;
+        }
+
+        .sidebar {
+          margin-top: 15px;
+          padding: 15px !important;
+        }
+
+        .sidebar-spacer {
+          display: none;
+        }
+
+        .hero-text,
+        .hero-side,
+        .header-left,
+        .header-right,
+        .section-table td,
+        .quick-links-table td {
+          text-align: center !important;
+        }
+
+        .hero-text,
+        .section-table td,
+        .sidebar,
+        .quick-links-table td {
+          padding-left: 15px !important;
+          padding-right: 15px !important;
+        }
+
+        .hero-text {
+          padding-top: 15px !important;
+          padding-bottom: 15px !important;
+        }
+
+        .hero-text p,
+        .section-table p,
+        .sidebar p,
+        .sidebar b,
+        .sidebar label,
+        .sidebar div,
+        .quick-links-table td,
+        li,
+        font {
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+
+        .hero-side-img,
+        .hack-img,
+        .mistakes-img {
+          width: 100% !important;
+          max-width: 100% !important;
+          height: auto !important;
+        }
+
+        .hack-card-wrap {
+          padding: 0 !important;
+          margin-bottom: 15px;
+        }
+
+        .section-right,
+        .mistakes-left,
+        .mistakes-right,
+        .future-right {
+          padding-left: 0 !important;
+        }
+
+        table[width="100%"],
+        table[width="90%"] {
+          width: 100% !important;
+        }
+
+        td[width="70%"],
+        td[width="72%"],
+        td[width="65%"],
+        td[width="30%"],
+        td[width="28%"],
+        td[width="33%"] {
+          width: 100% !important;
+        }
+
+        #aiSelect,
+        #ideaInput,
+        .sidebar button,
+        .section5-table input[type="range"],
+        .section5-table select {
+          width: 100% !important;
+          max-width: 100% !important;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        /* Опитування: ВАРІАНТИ ОДИН ПІД ОДНИМ */
+        #poll {
+          text-align: left !important;
+        }
+
+        #poll .radioContainer {
+          display: block !important;
+          width: 100% !important;
+          margin-bottom: 10px !important;
+        }
+
+        #poll button {
+          width: 100% !important;
+          max-width: 100% !important;
+          display: block !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        .sidebar > b,
+        .sidebar > p,
+        .sidebar select,
+        .sidebar textarea,
+        .sidebar #savedIdeas {
+          text-align: center;
+        }
+
+        .sidebar div[style*="text-align:left"] {
+          text-align: left !important;
+        }
+
+        font[size="6"] {
+          font-size: 32px !important;
+        }
+
+        font[size="5"] {
+          display: inline-block;
+          margin-top: 8px;
+          font-size: 28px !important;
+        }
+
+        h3 {
+          font-size: 20px;
+        }
+
+        /* Do / Don’t і AI vs Людина — 2 поруч на мобілці */
+        .two-cards-mobile {
+          width: 100% !important;
+          table-layout: fixed;
+          border-collapse: separate;
+          border-spacing: 8px 0;
+        }
+
+        .two-cards-mobile > tbody > tr {
+          display: table-row !important;
+          width: auto !important;
+        }
+
+        .two-cards-mobile td.equal-card {
+          display: table-cell !important;
+          width: 50% !important;
+          min-height: 210px;
+          padding: 10px !important;
+          vertical-align: top !important;
+          word-break: break-word;
+        }
+
+        .two-cards-mobile td.equal-gap {
+          display: none !important;
+          width: 0 !important;
+          padding: 0 !important;
+        }
+
+        .two-cards-mobile font[size="4"] {
+          font-size: 17px !important;
+        }
+
+        .two-cards-mobile font[size="3"] {
+          font-size: 14px !important;
+          line-height: 1.45 !important;
+        }
+      }
     </style>
 </head>
 
@@ -19,16 +337,14 @@
 <!-- ===== HEADER ===== -->
 <table width="100%" bgcolor="#d0e6f7" cellpadding="20">
     <tr>
-        <td>
-            <!-- Лого + текст у одному рядку -->
+        <td class="header-left">
             <a href="index.html" style="display:inline-block;">
-  <img src="logo (2).png" width="80" alt="Лого"
-       style="vertical-align:middle;">
-</a>
+                <img src="logo (2).png" width="80" alt="Лого" style="vertical-align:middle;">
+            </a>
             <font size="5"><b>AI Tools Guide</b></font>
         </td>
 
-        <td align="right">
+        <td class="header-right" align="right">
             <h3 style="margin:0;">
                 <a href="index.html" style="text-decoration:none; color:#080a0b;">Головна</a> |
                 <a href="tools.html" style="text-decoration:none; color:#080a0b;"><b>Інструменти</b></a>
@@ -40,16 +356,16 @@
 <br>
 
 <!-- ===== MAIN CONTENT WITH SIDEBAR ===== -->
-<table width="90%" align="center" cellpadding="20">
+<table class="main-layout" width="90%" align="center" cellpadding="20">
   <tr valign="top">
 
-    <!-- ===== LEFT: MAIN CONTENT (TOOLS PAGE) ===== -->
-    <td width="70%">
+    <!-- ===== LEFT: MAIN CONTENT ===== -->
+    <td class="main-left" width="70%">
 
       <!-- ===== HERO ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="22" cellspacing="0" style="border-radius:16px;">
+      <table class="hero-table" width="100%" bgcolor="#ffffff" cellpadding="22" cellspacing="0" style="border-radius:16px;">
         <tr>
-          <td width="70%" valign="top">
+          <td class="hero-text" width="70%" valign="top">
             <font size="6"><b>Інструменти</b></font><br><br>
             <font size="3">
               Практична сторінка: як ефективно працювати з AI-інструментами, як писати запити (prompts),
@@ -65,17 +381,15 @@
               </tr>
             </table>
           </td>
-
-         
         </tr>
       </table>
 
       <br>
 
       <!-- ===== SECTION 1 ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+      <table class="section-table" width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
         <tr>
-          <td width="72%" valign="top">
+          <td class="section-left" width="72%" valign="top">
             <font size="5"><b id="howto">1) Як ефективно використовувати AI-інструменти</b></font><br><br>
 
             <table width="100%" cellpadding="12" cellspacing="0" bgcolor="#f7f9fc" style="border-radius:12px;">
@@ -107,10 +421,8 @@
 
           </td>
 
-          <td width="28%" valign="top">
-            <!-- КАРТИНКА: steps.png -->
+          <td class="section-right" width="28%" valign="top">
             <img src="steps.png" alt="Steps illustration" width="370" style="border-radius:14px;" class="zoom"><br>
-            
 
             <table width="100%" bgcolor="#eef6ff" cellpadding="12" cellspacing="0" style="border-radius:12px;">
               <tr>
@@ -133,11 +445,9 @@
       <br>
 
       <!-- ===== SECTION 2 ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+      <table class="section-table" width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
         <tr>
-         
-
-          <td width="70%" valign="top" style="padding-left:10px;">
+          <td width="100%" valign="top">
             <font size="5"><b id="formula">2) Формула ідеального AI-запиту</b></font><br><br>
 
             <table width="100%" cellpadding="14" cellspacing="0" bgcolor="#f7f9fc" style="border-radius:12px;">
@@ -155,9 +465,9 @@
 
             <br>
 
-            <table width="100%" cellpadding="0" cellspacing="0">
+            <table class="two-cards-mobile" width="100%" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="50%" bgcolor="#eef6ff" style="padding:12px; border-radius:12px;">
+                <td class="equal-card" width="50%" bgcolor="#eef6ff" style="padding:12px; border-radius:12px;">
                   <font size="4"><b>✅ Do</b></font><br>
                   <font size="3">
                     • конкретна задача<br>
@@ -166,8 +476,8 @@
                     • обмеження (мова/тон/обсяг)
                   </font>
                 </td>
-                <td width="10"></td>
-                <td width="50%" bgcolor="#ffecec" style="padding:12px; border-radius:12px;">
+                <td class="equal-gap" width="10"></td>
+                <td class="equal-card" width="50%" bgcolor="#ffecec" style="padding:12px; border-radius:12px;">
                   <font size="4"><b>❌ Don’t</b></font><br>
                   <font size="3">
                     • “зроби красиво” без деталей<br>
@@ -186,7 +496,7 @@
       <br>
 
       <!-- ===== SECTION 3: LIFEHACKS ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+      <table class="hacks-table" width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
         <tr>
           <td>
             <font size="5"><b id="hacks">3) AI-лайфхаки</b></font><br>
@@ -195,33 +505,30 @@
 
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="33%" valign="top" style="padding-right:10px;">
+                <td class="hack-card-wrap" width="33%" valign="top" style="padding-right:10px;">
                   <table width="100%" bgcolor="#f7f9fc" cellpadding="14" cellspacing="0" style="border-radius:14px;">
                     <tr><td>
                       <img src="hack-variants.png" alt="Ask for variants" width="230" style="border-radius:10px;" class="zoom"><br>
-                      
                       <font size="4"><b>Проси 2–3 варіанти</b></font><br>
                       <font size="3">Порівняєш відповіді і вибереш найкращу.</font>
                     </td></tr>
                   </table>
                 </td>
 
-                <td width="33%" valign="top" style="padding:0 10px;">
+                <td class="hack-card-wrap" width="33%" valign="top" style="padding:0 10px;">
                   <table width="100%" bgcolor="#f7f9fc" cellpadding="14" cellspacing="0" style="border-radius:14px;">
                     <tr><td>
                       <img src="hack-constraints.png" alt="Add constraints" width="230" style="border-radius:10px;" class="zoom"><br>
-                      
                       <font size="4"><b>Додавай обмеження</b></font><br>
                       <font size="3">Мова, стиль, обсяг, аудиторія — і результат буде точніший.</font>
                     </td></tr>
                   </table>
                 </td>
 
-                <td width="33%" valign="top" style="padding-left:10px;">
+                <td class="hack-card-wrap" width="33%" valign="top" style="padding-left:10px;">
                   <table width="100%" bgcolor="#f7f9fc" cellpadding="14" cellspacing="0" style="border-radius:14px;">
                     <tr><td>
                       <img src="hack-refine.png" alt="Refine output" width="230" style="border-radius:10px;" class="zoom"><br>
-                      
                       <font size="4"><b>Уточнюй після 1-ї відповіді</b></font><br>
                       <font size="3">Попроси “коротше”, “простішими словами”, “додай приклад”.</font>
                     </td></tr>
@@ -237,14 +544,14 @@
       <br>
 
       <!-- ===== SECTION 4: AI vs HUMAN ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+      <table class="vs-table" width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
         <tr>
-          <td width="65%" valign="top">
+          <td width="100%" valign="top">
             <font size="5"><b id="vs">4) AI vs Людина</b></font><br><br>
 
-            <table width="100%" cellpadding="0" cellspacing="0">
+            <table class="two-cards-mobile" width="100%" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="50%" bgcolor="#eef6ff" style="padding:14px; border-radius:14px;">
+                <td class="equal-card" width="50%" bgcolor="#eef6ff" style="padding:14px; border-radius:14px;">
                   <font size="4"><b>AI сильний у:</b></font><br><br>
                   <font size="3">
                     • швидкому створенні чернеток<br>
@@ -253,8 +560,8 @@
                     • рутинних повторюваних задачах
                   </font>
                 </td>
-                <td width="10"></td>
-                <td width="50%" bgcolor="#eef6ff" style="padding:14px; border-radius:14px;">
+                <td class="equal-gap" width="10"></td>
+                <td class="equal-card" width="50%" bgcolor="#eef6ff" style="padding:14px; border-radius:14px;">
                   <font size="4"><b>Людина сильна у:</b></font><br><br>
                   <font size="3">
                     • критичному мисленні<br>
@@ -276,23 +583,19 @@
               </tr>
             </table>
           </td>
-
-          
         </tr>
       </table>
 
       <br>
 
       <!-- ===== SECTION 5: MISTAKES ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+      <table class="mistakes-table" width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
         <tr>
-          <td width="30%" valign="top">
-            <!-- КАРТИНКА: mistakes.png -->
+          <td class="mistakes-left" width="30%" valign="top">
             <img src="mistakes.png" alt="Common mistakes" width="300" style="border-radius:14px;" class="zoom"><br>
-           
           </td>
 
-          <td width="70%" valign="top" style="padding-left:10px;">
+          <td class="mistakes-right" width="70%" valign="top" style="padding-left:10px;">
             <font size="5"><b id="mistakes">5) Типові помилки</b></font><br><br>
 
             <table width="100%" cellpadding="14" cellspacing="0" bgcolor="#ffecec" style="border-radius:12px;">
@@ -326,9 +629,9 @@
       <br>
 
       <!-- ===== SECTION 6: FUTURE ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
+      <table class="future-table" width="100%" bgcolor="#ffffff" cellpadding="18" cellspacing="0" style="border-radius:16px;">
         <tr>
-          <td width="70%" valign="top">
+          <td class="future-left" width="70%" valign="top">
             <font size="5"><b id="future">6) Майбутнє AI-інструментів</b></font><br><br>
             <font size="3">
               AI-інструменти стають більш персоналізованими та інтегрованими у щоденні задачі.
@@ -346,15 +649,13 @@
               </tr>
             </table>
           </td>
-
-          
         </tr>
       </table>
 
       <br>
 
       <!-- ===== OPTIONAL: ANCHOR LINKS ===== -->
-      <table width="100%" bgcolor="#ffffff" cellpadding="14" cellspacing="0" style="border-radius:16px;">
+      <table class="quick-links-table" width="100%" bgcolor="#ffffff" cellpadding="14" cellspacing="0" style="border-radius:16px;">
         <tr>
           <td>
             <font size="3">
@@ -372,10 +673,9 @@
 
     </td>
 
-    <!-- ===== RIGHT: SIDEBAR (UNCHANGED) ===== -->
-    <td width="30%" bgcolor="#e3f0fa" align="center" style="vertical-align:top; padding:20px;">
+    <!-- ===== RIGHT: SIDEBAR ===== -->
+    <td class="main-right sidebar" width="30%" bgcolor="#e3f0fa" align="center" style="vertical-align:top; padding:20px;">
         
-        <!-- 1️⃣ Вибір AI -->
         <b>Виберіть AI інструмент:</b>
         <br><br>
         <select id="aiSelect">
@@ -387,9 +687,10 @@
           <option value="copilot.html">Microsoft Copilot</option>
         </select>
 
-        <br><br><br><br><br><br><br>
+        <div class="sidebar-spacer">
+          <br><br><br><br><br><br><br>
+        </div>
 
-        <!-- 2️⃣ Картки “Цікаво знати” -->
         <b>Цікаво знати:</b>
         <div style="width:100%; text-align:left;">
             <div style="background:#d0e6f7; padding:10px; border-radius:8px; margin:10px 0;">
@@ -405,7 +706,6 @@
 
         <br>
 
-        <!-- ===== Опитування ===== -->
         <b>Опитування:</b>
         <div id="poll" style="text-align:left; margin-top:5px;">
             <p>Який AI ти використовуєш найчастіше?</p>
@@ -438,70 +738,8 @@
             <button onclick="submitVote()" style="margin-top:10px; padding:5px 10px; background:#2c3e50; color:#fff; border:none; border-radius:5px; cursor:pointer;">Підтвердити</button>
         </div>
 
-        <style>
-          .radioContainer {
-            display: block;
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            user-select: none;
-          }
-          .radioContainer input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-          }
-          .checkmark {
-            position: absolute;
-            top: 2px;
-            left: 0;
-            height: 18px;
-            width: 18px;
-            background-color: #eee;
-            border-radius: 50%;
-            border: 1px solid #ccc;
-            transition: 0.2s;
-          }
-          .radioContainer input:checked ~ .checkmark {
-            background-color: #2c3e50;
-            border-color: #1a2a38;
-          }
-          .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-          }
-          .radioContainer input:checked ~ .checkmark:after {
-            display: block;
-          }
-          .radioContainer .checkmark:after {
-            top: 4px;
-            left: 4px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: white;
-          }
-          button:hover { background:#1a2a38; }
-        </style>
-
-        <script>
-        function submitVote() {
-            const radios = document.getElementsByName('ai');
-            let selected = null;
-            for (const r of radios) {
-                if (r.checked) { selected = r.value; break; }
-            }
-            if (selected) alert(`Ви обрали: ${selected}`);
-            else alert('Будь ласка, оберіть AI перед підтвердженням!');
-        }
-        </script>
-
         <br>
 
-        <!-- ===== Міні-чат ===== -->
         <b>Міні-чат для ідей:</b>
         <p style="font-size:12px; color:#555;">Введи свій промт і збережи локально:</p>
         <textarea id="ideaInput" rows="3" style="width:100%; padding:5px;"></textarea>
@@ -509,43 +747,6 @@
         <button onclick="saveIdea()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Зберегти</button>
         <button onclick="clearIdeas()" style="margin-top:5px; background:#2c3e50; color:#fff; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Очистити всі ідеї</button>
         <div id="savedIdeas" style="margin-top:10px; font-size:13px; color:#333;"></div>
-
-        <script>
-          function saveIdea() {
-              const input = document.getElementById('ideaInput');
-              const text = input.value.trim();
-              if(!text) return alert('Введіть текст!');
-              
-              let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
-              ideas.push(text);
-              localStorage.setItem('ideas', JSON.stringify(ideas));
-              input.value = '';
-              renderIdeas();
-          }
-
-          function renderIdeas() {
-              let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
-              const container = document.getElementById('savedIdeas');
-              container.innerHTML = '';
-              ideas.forEach((idea) => {
-                  container.innerHTML += `<div>💡 ${idea}</div>`;
-              });
-          }
-
-          function clearIdeas() {
-              localStorage.removeItem('ideas');
-              renderIdeas();
-          }
-
-          window.addEventListener('load', () => {
-              let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
-              if(ideas.length > 1){
-                  ideas = [ideas[0]];
-                  localStorage.setItem('ideas', JSON.stringify(ideas));
-              }
-              renderIdeas();
-          });
-        </script>
 
     </td>
   </tr>
@@ -562,11 +763,54 @@
   </tr>
 </table>
 
-<!-- ===== SELECT: AUTO CHOOSE CURRENT PAGE + NAVIGATE ===== -->
 <script>
+function submitVote() {
+    const radios = document.getElementsByName('ai');
+    let selected = null;
+    for (const r of radios) {
+        if (r.checked) { selected = r.value; break; }
+    }
+    if (selected) alert(`Ви обрали: ${selected}`);
+    else alert('Будь ласка, оберіть AI перед підтвердженням!');
+}
+
+function saveIdea() {
+    const input = document.getElementById('ideaInput');
+    const text = input.value.trim();
+    if(!text) return alert('Введіть текст!');
+    
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+    ideas.push(text);
+    localStorage.setItem('ideas', JSON.stringify(ideas));
+    input.value = '';
+    renderIdeas();
+}
+
+function renderIdeas() {
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+    const container = document.getElementById('savedIdeas');
+    container.innerHTML = '';
+    ideas.forEach((idea) => {
+        container.innerHTML += `<div>💡 ${idea}</div>`;
+    });
+}
+
+function clearIdeas() {
+    localStorage.removeItem('ideas');
+    renderIdeas();
+}
+
+window.addEventListener('load', () => {
+    let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
+    if(ideas.length > 1){
+        ideas = [ideas[0]];
+        localStorage.setItem('ideas', JSON.stringify(ideas));
+    }
+    renderIdeas();
+});
+
 const select = document.getElementById("aiSelect");
 
-// назва файлу БЕЗ параметрів ? і # (щоб збіг точно знаходився)
 const page = decodeURIComponent(window.location.pathname.split("/").pop() || "")
   .split("?")[0]
   .split("#")[0];
